@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Challenge</string>
+    <string name="error_message_network">Network error.Please check your Internet connection</string>
+    <string name="enter_the_query">Enter the query</string>
+    <string name="enter_query_to_search">Enter query to search</string>
+    <string name="search">Search</string>
+    <string name="title_pixabay_detail">Pixabay Detail</string>
+    <string name="show_details">Show Details</string>
+    <string name="show_more_details">Are you want to see more details?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+</resources>

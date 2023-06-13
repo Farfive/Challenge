@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils"/>
+
+        <variable
+            name="hitsList"
+            type="com.example.challenge.domain.entities.HitsList"/>
+
+        <variable
+            name="callback"
+            type="com.example.challenge.ui.pixabay.details.PixaBayDetailsActivity"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/MatchWidthHeight">
+
+        <include
+            android:id="@+id/layout_appbar"
+            layout="@layout/appbar"
+            app:callback="@{callback}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/activity_detail_iv"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="@dimen/dimen_0dp"
+            app:largeImageURL="@{hitsList.largeImageURL}"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toBottomOf="@+id/layout_appbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/colorTransparentDark"/>
+
+        <View
+            android:id="@+id/men_adpt_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_70dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_detail_iv"
+            app:layout_constraintEnd_toEndOf="@+id/activity_detail_iv"
+            app:layout_constraintStart_toStartOf="@+id/activity_detail_iv"
+            android:background="@color/colorTransparentDark"/>
+
+        <TextView
+            style="@style/PixabayTextTags"
+            android:visibility="@{TextUtils.isEmpty(hitsList.tags) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/user_tv"
+            android:text="@{hitsList.tags}"
+            tools:text="@string/app_name"/>
+
+        <TextView
+            android:id="@+id/user_tv"
+            style="@style/PixabayTextUser"
+            android:visibility="@{TextUtils.isEmpty(hitsList.user) ? View.GONE : View.VISIBLE}"
+            android:text="@{hitsList.user}"
+            app:layout_constraintEnd_toStartOf="@+id/likes_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_detail_iv"
+            app:layout_constraintStart_toStartOf="@id/men_adpt_view"
+            tools:text="@string/app_name"/>
+
+        <TextView
+            android:id="@+id/likes_tv"
+            style="@style/PixabayTextLikeCommentsViews"
+            app:drawableStartCompat="@drawable/ic_like"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_detail_iv"
+            app:layout_constraintEnd_toStartOf="@id/comments_tv"
+            android:text="@{String.valueOf(hitsList.likes)}"/>
+
+        <TextView
+            android:id="@+id/comments_tv"
+            style="@style/PixabayTextLikeCommentsViews"
+            app:drawableStartCompat="@drawable/ic_comment"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_detail_iv"
+            app:layout_constraintEnd_toStartOf="@id/favorites_tv"
+            android:text="@{String.valueOf(hitsList.comments)}"/>
+
+        <TextView
+            android:id="@+id/favorites_tv"
+            style="@style/PixabayTextLikeCommentsViews"
+            app:drawableStartCompat="@drawable/ic_favorites"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{String.valueOf(hitsList.favorites)}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
